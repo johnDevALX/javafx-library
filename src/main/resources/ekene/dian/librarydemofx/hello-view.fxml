@@ -1,16 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="ekene.dian.librarydemofx.HelloController">
-  <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-  </padding>
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="ekene.dian.librarydemofx.HelloController"
+      spacing="10"
+      style="-fx-padding: 20;"
+      stylesheets="@styles.css">
 
-  <Label fx:id="welcomeText"/>
-  <Button text="Hello!" onAction="#onHelloButtonClick"/>
+    <Label text="Library Management System"
+           style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-padding: 0 0 10 0;" />
+
+    <!-- Search Bar -->
+    <HBox spacing="10" style="-fx-padding: 0 0 10 0;">
+        <TextField fx:id="searchField" promptText="Search by title or author..." HBox.hgrow="ALWAYS" />
+        <Button text="Refresh" onAction="#handleRefresh" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" />
+    </HBox>
+
+    <!-- Book Table -->
+    <TableView fx:id="bookTableView" VBox.vgrow="ALWAYS" style="-fx-padding: 0 0 10 0;">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID" prefWidth="50" />
+            <TableColumn fx:id="titleColumn" text="Title" prefWidth="200" />
+            <TableColumn fx:id="authorColumn" text="Author" prefWidth="150" />
+            <TableColumn fx:id="isbnColumn" text="ISBN" prefWidth="150" />
+            <TableColumn fx:id="publishedDateColumn" text="Published Date" prefWidth="120" />
+        </columns>
+    </TableView>
+
+    <!-- Form -->
+    <GridPane hgap="10" vgap="10" style="-fx-padding: 10 0 10 0;">
+        <Label text="Title:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <TextField fx:id="titleField" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.hgrow="ALWAYS" />
+
+        <Label text="Author:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField fx:id="authorField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+        <Label text="ISBN:" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+        <TextField fx:id="isbnField" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+
+        <Label text="Published Date:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+        <DatePicker fx:id="publishedDatePicker" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+    </GridPane>
+
+    <!-- Buttons -->
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Add" onAction="#handleAddBook" style="-fx-background-color: #2196F3; -fx-text-fill: white;" />
+        <Button text="Update" onAction="#handleUpdateBook" style="-fx-background-color: #FFC107;" />
+        <Button text="Delete" onAction="#handleDeleteBook" style="-fx-background-color: #F44336; -fx-text-fill: white;" />
+    </HBox>
+
 </VBox>
